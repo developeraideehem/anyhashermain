@@ -4,6 +4,11 @@ jobs:
   Compile:
     runs-on: ubuntu-latest
     steps:
-      - run: cd backend
-      - run: npm i
-      - run: npm run build
+      - name: Checkout code
+        uses: actions/checkout@v4  # Upgrade from v1 (deprecated) to v4
+
+      - name: Install dependencies and build
+        working-directory: ./backend  # Set directory once for all commands in this step
+        run: |
+          npm install
+          npm run build
